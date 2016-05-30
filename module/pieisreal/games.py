@@ -177,6 +177,16 @@ class Screen:
         """
 
         pass
+    
+    def mouse_visible(self, state = True):
+        """
+        This method is used to hide the pointer behind a sprite,
+        should it be required.
+        Allows for this to be done without the need to import pygame.
+        Take one logical arguement, and passes this to pygames' 
+        mouse.set_visible.
+        """
+        pygame.mouse.set_visible(state)
 
     def mouse_down(self, pos, button):
         """
@@ -703,6 +713,12 @@ class Object:
         objects have been made up to this point.
         """
         self._static = 1
+        
+    def update(self):
+        """Update sprite on the screen. This method is designed to be over-ridden
+        and is here as a placeholder if not required"""
+        
+        pass
 
 #------------------------------------------------------------------------------
 
@@ -1093,6 +1109,7 @@ class Mover (Timer):
         self.move_by (self._dx, self._dy)
         if self._da:
             self.rotate_by (self._da)
+        self.update()
 
 #------------------------------------------------------------------------------
 
