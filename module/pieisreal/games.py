@@ -750,6 +750,34 @@ class Sprite (Object):
 
 #------------------------------------------------------------------------------
 
+class Mouse (Sprite):
+    """
+    This is a subclass of Sprite which allows you to replace the mouse pointer
+    with a sprite that will move across the window as your mouse normally would.
+    """
+    def __init__(self, screen, image):
+        x, y = screen.mouse_position()
+        self.init_mouse (screen, x, y, image)
+
+    def init_mouse (self, screen, x, y, image):
+        """
+        Arguments:
+
+        screen -- the screen on which the sprite should appear.
+        x -- the x-coordinate of the mouse.
+        y -- the y-coordinate of the mouse.
+        image -- the image object, as returned from the load_image function.
+        """
+        Sprite.__init__(self, screen, x, y, image)
+        self._tickable = 1
+        screen.mouse_visible(False)
+
+    def _tick(self):
+        x, y = Screen.mouse_position(self)
+        self.move_to(x, y)
+
+#------------------------------------------------------------------------------
+
 class ColorMixin:
     """
     This is a mixin class which handles color changes for geometric
