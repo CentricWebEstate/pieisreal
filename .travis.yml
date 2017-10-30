@@ -1,20 +1,19 @@
 language: python
 python:
-- 2.7.10
+- '2.7'
 install:
-- sudo add-apt-repository -y ppa:texlive-backports/ppa
-- sudo apt-get update
-- sudo apt-get install texlive make
+- sudo apt-get -qq update
+- sudo apt-get install -y -f texlive-full make
 script:
 - (cd sheets; LATEX_OPTS="-interaction=nonstopmode -shell-escape" make pdfrelease)
 deploy:
   provider: s3
-  access_key_id: AKIAJHWWUCZ75JOC2KKQ
+  access_key_id: AKIAIYRRK52DO5HPYNJA
   secret_access_key:
-    secure: JVApbACOhcKu/Z1xy8jEnbxSDxx1o2anXvD7LgEJLSyhRf1N1ljJXwbsrkcAIFd6HNd3d0WSWoPkXkaz8qxSPzQcx7KXmNGuem9wlmndULcZSAtAuexMMOn43K6+glx9VCaiaBQk2c/hLAwGFrY7JJAJsh2/mS6caqCL+BIy1fKZXuD7nVWGtN93SO39tsBdgGR4YZXmv1Qa6GIIAqfLkJPGX9ILi9yNpmm8O1BHB62OQoLJ65Xt3aAfnuopxKaZbxoDTLK/KOKG7/6z/KaFfIeo9t+yeN1ASihEI9XoPSVXcbNzme53UxjpukSaQictfZ8Iujp9skiMnc1ttbARpe7FmijDCGCvoieCTTk+TdZu+XRg06xDqEEXvNKpQ35H8XVKXEqYmxtMGvFzaRWYo+FExQOvU/5JzQfuu0vXnDCXgaeZjIqdhkkrxndc0E7QdF2TleeIzKpYisFYofKaQKyKZV7KbnOOppNaAG56Lc7dXtkRBhQX1SKtbOSnq0C+I0ki5LsSdLWW8JMLLkarh1PMRtLsglcsY/XaiJUKUxk4tbkKkTCSsXpQfdV+gf2ohmYKqlOtGA9g64aq2G2ip6aW8GcsDDL4doqTiTa0Wuu+oteBdEjMLc2qOMoC0OUlHfnOukwpuQFtCUL4oM7u52xFSxrL6rHlQlGTsKUd2DA=
+    secure: SNVeIbn6BvxiQhOC6AHwjw3JmgIE+0KYFaDcY8hAqcVnTreEj7dlnmap0bW+2pafC7cgWn6e1ruIo+W0cP74FCIvPKta1mzpuzUSYWv2uB1nIbTrIW2fAkhTklj1xgLXG61wJKJr5BWVlAGHHAtFp1rQzflxt0gxzsuwzzhUmHmXaaxZROZm7vip5Mi+azoMa1j56oHOfBS0sIq2CvyirPpUH1W8T99d8zEiYluw96WxIQAupvUWRM5Si5XmeoOmlbsSh1h75BIO1CUQYnCACyfCtyYRUJEKm4IBWXlS9B1Z+8W6BGsjxmE6qSsJReT3o4IWDarEf/31B5dyeOcle1JtjUFcXKorFkPZkb0G7EwxNbfQ3ONJkjRh9DDCiQflPjIupWa04GkghXzulSGoDcIThiHqYRSzutH5Zti+QXTzFPAU/YdhVJI9XBr+daMnTRpoxi0MBPVOtoEnyItdLwOefjwO80kgX+S3t3r1xFfiqKfJz3DW3WCkKuRZs1izLZADQk17MVVrW6UqMKRItzMT8NYXFhTT75GW8vsHn2z4idTa4CErWrBb1bSYQoOyZvm0/XHOca+s1jZgn0vt6stN/dyavZtFxTWO3deHEkUzB3ziJQEhvJNabxy60MzQMX2Updals6rdabAF4+WnrgBfdr3faISy9F96NIjrsIc=
   bucket: pieisreal-sheets
   local-dir: release
-  upload-dir: $TRAVIS_BUILD_NUMBER
+  upload-dir: "$TRAVIS_BUILD_NUMBER"
   acl: public_read
   region: ap-southeast-2
   skip_cleanup: true
