@@ -177,7 +177,7 @@ using functions. (See Sheet~3, and Sheet~F (\emph{Functions}).)
 So, begin by typing in the following program.
 
 \begin{program}
-from livewires import * \C{As usual}
+from pieisreal import * \C{As usual}
 begin_graphics()        \C{So that we can draw things}
 allow_moveables()       \C{This is explained later!}
 place_player()
@@ -250,7 +250,7 @@ first.
 In the ``Python Shell'' window, type the following:
 
 \begin{interaction}
->>> \T{from livewires import *}
+>>> \T{from pieisreal import *}
 >>> \T{begin_graphics()}
 >>> \T{allow_moveables()}
 >>> \T{c = circle(320,200,5)}
@@ -318,7 +318,7 @@ but they're more complicated.) When you're done, hold down the |Q|~key
 until the machine notices.
 
 \begin{program}
-from livewires import *
+from pieisreal import *
 import time \C{See Sheet T for more about this}
 begin_graphics()
 while 1:
@@ -326,7 +326,7 @@ while 1:
   print(keys)
   if 'q' in keys: \C{See Sheet C if you don't understand this}
     break \C{See Sheet L if you aren't sure what this means}
-  time.sleep(0.5) \C{Wait half a second.}
+  time.sleep(0.5) \C{Wait half a second. Play with this value}
 \end{program}
 
 So, now you know how to tell what keys are pressed, and you know
@@ -1076,7 +1076,7 @@ Some things you might not have looked at yet, and might be interesting:
 \item Sheet~M (\emph{Modules}) tells you a little bit about how
       the huge collection of (sometimes) useful functions that
       come with Python is organised.
-\item Sheet~W (\emph{The LiveWires module}) will tell you what
+\item Sheet~W (\emph{The PieIsReal module}) will tell you what
       things you've been using in these worksheets are part of
       Python itself, and what things were added by us to make your
       life easier.

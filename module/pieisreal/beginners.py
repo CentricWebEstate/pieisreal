@@ -891,7 +891,8 @@ def move_by(object, x,y=None,
         try: x,y = x
         except: raise ExBadParameters('incomprehensible coordinates')
     y = -y;
-    apply(_canvas.coords, (object.id,) + tuple(_adjust_coords(object.coord_list,x,y)))
+    args = (object.id,) + tuple(_adjust_coords(object.coord_list,x,y))
+    _canvas.coords(*args)
     d_o_e(d_w)
 
 def move_to(object, x,y=None,
@@ -902,7 +903,8 @@ def move_to(object, x,y=None,
         except: raise ExBadParameters('incomprehensible coordinates')
     y = _canvas_ys - y
     ox,oy = object.coords()[:2]
-    apply(_canvas.coords, (object.id,) + tuple(_adjust_coords(object.coord_list,x-ox,y-oy)))
+    args = (object.id,) + tuple(_adjust_coords(object.coord_list,x-ox,y-oy))
+    _canvas.coords(*args)
     d_o_e(d_w)
 
 ###############################################################################

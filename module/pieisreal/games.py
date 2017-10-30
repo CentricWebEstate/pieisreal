@@ -785,9 +785,9 @@ class ColorMixin:
     _create_surface method.
     """
 
-    def set_color(self, colour):
-        if color != self._colour:
-            self._color = colour
+    def set_color(self, color):
+        if color != self._color:
+            self._color = color
             if self._static:
                 self._erase()
                 self._dirty = 1
@@ -840,7 +840,7 @@ class Text(Object, ColorMixin):
         y -- y-coordinate of centre of bounding box.
         text -- the text to display.
         size -- nominal height of the text, in pixels.
-        color -- the colour the text should be.
+        color -- the color the text should be.
         """
         if not _have_font:
             raise GameError("We don't have pygame.font, so can't create text objects")
@@ -892,12 +892,12 @@ class Polygon (Object, ColorMixin, OutlineMixin):
         x -- x-coordinate of reference point.
         y -- y-coordinate of reference point.
         shape -- a list of vertices, each given as (dx,dy) from reference point.
-        color -- colour to draw either the boundary or the whole polygon.
+        color -- color to draw either the boundary or the whole polygon.
         filled -- true iff the polygon is to be filled in.
         outline -- color to draw the outline in (if different from whole polygon)
         static -- whether or not the polygon is ever expected to move
         """
-        self._color = colour
+        self._color = color
         self.screen = screen # Must do this here so surface convert works
         self._filled = filled
         self._shape = tuple(shape)
@@ -947,9 +947,9 @@ class Polygon (Object, ColorMixin, OutlineMixin):
         # transparent. We choose a color for it that isn't the same as the
         # one in which the polygon is to be drawn.
         key_color = (0,0,0)
-        if self._color == key_colour or self._outline == key_colour:
+        if self._color == key_color or self._outline == key_color:
             key_color = (0,0,10)
-            if self._color == key_colour or self._outline == key_colour:
+            if self._color == key_color or self._outline == key_color:
                 key_color = (0, 10, 10)
         surface.fill (key_color)
         surface.set_colorkey (key_color, RLEACCEL)
@@ -990,7 +990,7 @@ class Circle (Object, ColorMixin, OutlineMixin):
     def init_circle(self, screen, x, y, radius, color, filled=True,
                     outline=None, static=0):
 
-        self._color = colour
+        self._color = color
         self._outline = outline
         self.screen = screen # Must do this here so surface convert in _create_surface works
         self._filled = filled
@@ -1007,9 +1007,9 @@ class Circle (Object, ColorMixin, OutlineMixin):
         surface = pygame.Surface ((2 * self._radius + 1, 2 * self._radius +1)).convert ()
 
         key_color = (0,0,0)
-        if self._color == key_colour or self._outline == key_colour:
+        if self._color == key_color or self._outline == key_color:
             key_color = (0,0,10)
-            if self._color == key_colour or self._outline == key_colour:
+            if self._color == key_color or self._outline == key_color:
                 key_color = (0,10,10)
 
         surface.fill (key_color)
@@ -1137,7 +1137,7 @@ class Mover (Timer):
         self.move_by (self._dx, self._dy)
         if self._da:
             self.rotate_by (self._da)
-        self.update()
+        self.moved()
 
 #------------------------------------------------------------------------------
 
@@ -1164,7 +1164,7 @@ class Message (Text, Timer):
         y -- y-coordinate of centre of bounding box.
         text -- the text to display.
         size -- the size of the text, in pixels nominal height.
-        color -- the colour of the text.
+        color -- the color of the text.
         lifetime -- the number of frames to wait before disappearing.
         after_death -- the function to call immediately before disappearing.
         """
@@ -1259,7 +1259,7 @@ def load_image(file, transparent=1):
     file -- the filename of the image to load
     transparent -- whether the background of the image should be transparent.
                    Defaults to true.
-                   The background color is taken as the colour of the pixel
+                   The background color is taken as the color of the pixel
                    at (0,0) in the image.
     """
     if not _have_image:

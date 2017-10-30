@@ -11,10 +11,7 @@ version = re.search("__version__ = '([^']+)'",
 setup(
     name="PieIsReal",
     version=version,
-    dependency_links=[
-        "http://www.pygame.org/ftp/pygame-1.9.1release.tar.gz#egg=pygame-1.9.1"
-    ],
-    extras_require={'pygame':["pygame>=1.9.2"]},
+    extras_require={'pygame':["pygame>=1.9.3"]},
     description="PieIsReal is a python learning framework forked from"
                 " LiveWires. Significantly modified for python 3 compatibility",
     author="Richard Crook, Gareth McCaughan, Paul Wright, Rhodri James,"

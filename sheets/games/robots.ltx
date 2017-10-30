@@ -48,7 +48,7 @@
 %   the distribution, and reproduce the above copyright notice in the
 %   Opaque document itself.
 % 
-% - Neither the name of Scripture Union, nor LiveWires nor the names of
+% - Neither the name of Scripture Union, nor `LiveWires' nor the names of
 %   its contributors may be used to endorse or promote products derived
 %   from this document without specific prior written permission. 
 % 
@@ -72,8 +72,8 @@ LiveWires Documentation Licence: you should have received a copy of the
 licence when you received this document.
 
 For the \LaTeX{} source of this sheet, and for more information on
-LiveWires and on this course, see the LiveWires web site at
-\href{http://www.livewires.org.uk/python/}{|http://www.livewires.org.uk/python/|}
+PieIsReal and on this course, see the PieIsReal web site at
+\href{http://github.com/CentricWebEstate/pieisreal/}{|http://github.com/CentricWebEstate/pieisreal/|}
 
 %-----------------------------------------------------------------------------
 \section{Introduction}
@@ -143,13 +143,13 @@ Python doesn't run what you type as soon as you type it, but lets you
 type a lot of things to be run when you tell it).
 
 \begin{program}
-from livewires import games
-from livewires import colour
+from pieisreal import games
+from pieisreal import color
 import random
 \end{program}
 
-First, we tell Python we want to access the things in the LiveWires
-|games| module, and the colour names in the |colour| module.  We also
+First, we tell Python we want to access the things in the PieIsReal
+|games| module, and the color names in the |color| module.  We also
 need the standard library |random|, which contains lots of functions
 for picking numbers or things out of a list at random.
 
@@ -222,7 +222,7 @@ the top of our program:
 
 \begin{program}
 PLAYER_SIZE = 5
-PLAYER_COLOUR = colour.red
+PLAYER_COLOR = color.red
 PLAYER_SPEED = 1
 \end{program}
 
@@ -245,7 +245,7 @@ class Player(games.Circle, games.Mover):
         self.screen = screen
         x = random.randint(0, SCREENWIDTH-1)
         y = random.randint(0, SCREENHEIGHT-1)
-        self.init_circle(screen, x, y, PLAYER_SIZE, PLAYER_COLOUR)
+        self.init_circle(screen, x, y, PLAYER_SIZE, PLAYER_COLOR)
         self.init_mover(random.randint(-1,1) * PLAYER_SPEED,
                         random.randint(-1,1) * PLAYER_SPEED)
 
@@ -282,7 +282,7 @@ things, though, so we'll make our own subclass of it.
 class RobotGame(games.Screen):
     def __init__(self):
         self.init_screen(SCREENWIDTH, SCREENHEIGHT)
-        self.set_background_colour(colour.white)
+        self.set_background_color(color.white)
         self.game_over = 0
         self.player = Player(self)
 \end{program}
@@ -414,7 +414,7 @@ ROBOT_SHAPE = ((-PLAYER_SIZE, PLAYER_SIZE),
                (PLAYER_SIZE,  PLAYER_SIZE),
                (PLAYER_SIZE, -PLAYER_SIZE),
                (-PLAYER_SIZE, -PLAYER_SIZE))
-ROBOT_COLOUR = colour.black
+ROBOT_COLOR = color.black
 ROBOT_SPEED = PLAYER_SPEED
 \end{program}
 
@@ -436,7 +436,7 @@ class Robot(games.Polygon, games.Mover):
         self.target = player
         x = random.randint(0, SCREENWIDTH-1)
         y = random.randint(0, SCREENHEIGHT-1)
-        self.init_polygon(screen, x, y, ROBOT_SHAPE, ROBOT_COLOUR)
+        self.init_polygon(screen, x, y, ROBOT_SHAPE, ROBOT_COLOR)
         (dx, dy) = self.determine_velocity()
         self.init_mover(dx, dy)
 
@@ -614,7 +614,7 @@ JUNK_SHAPE = ((-PLAYER_SIZE, PLAYER_SIZE),
               (-PLAYER_SIZE/5, 1-PLAYER_SIZE),
               (PLAYER_SIZE/2, -PLAYER_SIZE/2),
               (-PLAYER_SIZE/5, 0))
-JUNK_COLOUR = colour.grey
+JUNK_COLOR = color.grey
 \end{program}
 
 After that, our |collided| routine is easy!
@@ -625,7 +625,7 @@ After that, our |collided| routine is easy!
             self.junk = 1  \C{\dots\ become junk}:
             self.set_velocity(0, 0)
             self.set_shape(JUNK_SHAPE)
-            self.set_colour(JUNK_COLOUR)
+            self.set_color(JUNK_COLOR)
 \end{program}
 
 \subsection{Junking the player}
@@ -641,7 +641,7 @@ do the work in the |RobotGame| object.
 
 The library gives us the |Text| object to display messages with.  That
 just needs to be told what to say, where to say it, and what size and
-colour to use.  We'll put the message in the middle of the screen, in
+color to use.  We'll put the message in the middle of the screen, in
 blue, and 48 points high.
 
 \begin{program}
@@ -649,11 +649,11 @@ blue, and 48 points high.
     def lose_game(self):
         self.game_over = 1
         games.Text(self, SCREENWIDTH/2, SCREENHEIGHT/2,
-                   "GAME OVER: YOU LOSE", 48, colour.blue)
+                   "GAME OVER: YOU LOSE", 48, color.blue)
 \end{program}
 
 \begin{note}
-Yes, the ``magic number'' 48 and the colour |blue| should really be
+Yes, the ``magic number'' 48 and the color |blue| should really be
 named constants like the all the other changeable things.  Why don't
 you do that?
 \end{note}
